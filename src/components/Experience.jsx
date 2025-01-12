@@ -3,6 +3,7 @@ import { Box, Capsule, OrbitControls, useKeyboardControls } from '@react-three/d
 import { RigidBody } from '@react-three/rapier';
 import { Controls } from '../App';
 import { useFrame } from '@react-three/fiber';
+import { Chess } from './objects/chess';
 
 export const Experience = () => {
   const [start, setStart] = useState(false);
@@ -44,7 +45,7 @@ export const Experience = () => {
 
   useFrame((_state) => {
     if (jumpPressed) jump();
-    
+
     handleMovement();
 
     if (!start) return;
@@ -58,8 +59,8 @@ export const Experience = () => {
       <directionalLight position={[-10, 10, 0]} intensity={0.4} />
       <OrbitControls />
 
-      <RigidBody 
-        position={[-2.5, 1, 0]} 
+      <RigidBody
+        position={[-2.5, 1, 0]}
         ref={capsule}
         onCollisionEnter={({ other }) => {
           if (other.collider?.name === "floor") {
@@ -72,9 +73,13 @@ export const Experience = () => {
           }
         }}
       >
-        <Capsule onClick={() => setStart(true)} scale={0.5}>
+        <Box onClick={() => setStart(true)} scale={0.5}>
           <meshStandardMaterial color={"pink"} />
-        </Capsule>
+        </Box>
+      </RigidBody>
+
+      <RigidBody>
+        <Chess scale={0.1} />
       </RigidBody>
 
       <RigidBody type="fixed" name="floor">
