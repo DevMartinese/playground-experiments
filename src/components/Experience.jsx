@@ -43,11 +43,11 @@ export const Experience = () => {
   };
 
   useFrame((_state) => {
-    if (!start) return;
     if (jumpPressed) jump();
-
+    
     handleMovement();
 
+    if (!start) return;
   })
 
   const isOnFloor = useRef(true);
@@ -62,17 +62,17 @@ export const Experience = () => {
         position={[-2.5, 1, 0]} 
         ref={capsule}
         onCollisionEnter={({ other }) => {
-          if (other.rigidBodyObject.name === "floor") {
+          if (other.collider?.name === "floor") {
             isOnFloor.current = true;
           }
         }}
         onCollisionExit={({ other }) => {
-          if (other.rigidBodyObject.name === "floor") {
+          if (other.collider?.name === "floor") {
             isOnFloor.current = false;
           }
         }}
       >
-        <Capsule onClick={() => setStart(true)}>
+        <Capsule onClick={() => setStart(true)} scale={0.5}>
           <meshStandardMaterial color={"pink"} />
         </Capsule>
       </RigidBody>
