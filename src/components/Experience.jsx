@@ -78,14 +78,20 @@ export const Experience = () => {
         </Box>
       </RigidBody>
 
-      <RigidBody>
+      {/*<RigidBody>
         <Chess scale={0.1} />
-      </RigidBody>
+      </RigidBody>*/}
 
-      <RigidBody type="fixed" name="floor">
+      {/*<RigidBody type="fixed" name="floor">
         <Box position={[0, 0, 0]} args={[10, 1, 10]}>
           <meshStandardMaterial color={"springgreen"} />
         </Box>
+      </RigidBody>*/}
+
+      <RigidBody type="fixed" name="floor">
+        <Plane rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} args={[1000, 1000]}>
+          <meshStandardMaterial color={"springgreen"} />
+        </Plane>
       </RigidBody>
     </>
   )
