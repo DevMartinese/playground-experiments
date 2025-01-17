@@ -1,9 +1,15 @@
 import { useRef, useState } from 'react';
-import { Box, Capsule, OrbitControls, useKeyboardControls } from '@react-three/drei';
+import { Box, Capsule, OrbitControls, Plane, useKeyboardControls } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import { Controls } from '../App';
 import { useFrame } from '@react-three/fiber';
 import { Chess } from './objects/chess';
+import { King } from './objects/chess/King';
+import { Queen } from './objects/chess/Queen';
+import { Bishop } from './objects/chess/Bishop';
+import { Knight } from './objects/chess/Knight';
+import { Rook } from './objects/chess/Rook';
+import { Pawn } from './objects/chess/Pawn';
 
 export const Experience = () => {
   const [start, setStart] = useState(false);
@@ -78,9 +84,12 @@ export const Experience = () => {
         </Box>
       </RigidBody>
 
-      {/*<RigidBody>
-        <Chess scale={0.1} />
-      </RigidBody>*/}
+      <King scale={0.1} />
+      <Queen scale={0.1} />
+      <Bishop scale={0.1} />
+      <Knight scale={0.1} />
+      <Rook scale={0.1}/>
+      <Pawn scale={0.1} />
 
       {/*<RigidBody type="fixed" name="floor">
         <Box position={[0, 0, 0]} args={[10, 1, 10]}>
