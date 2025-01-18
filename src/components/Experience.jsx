@@ -57,7 +57,7 @@ export const Experience = () => {
           y: cube.current.translation().y + 10, // Cámara por encima del cubo
           z: cube.current.translation().z + 10, // Cámara detrás en el eje Z
         },
-        0.1 // Suavizar el movimiento
+        0.05 // Suavizar el movimiento
       );
 
       // Hacer que la cámara apunte al cubo
@@ -70,6 +70,7 @@ export const Experience = () => {
 
     if (jumpPressed) jump();
     handleMovement();
+    if (!start) return;
   });
 
   return (
