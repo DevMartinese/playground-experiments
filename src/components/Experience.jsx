@@ -1,17 +1,21 @@
 import { useRef, useState } from 'react';
-import { Box, Capsule, OrbitControls, Plane, useKeyboardControls } from '@react-three/drei';
+import { Box, Plane, useKeyboardControls } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import { Controls } from '../App';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Chess } from './objects/chess/Chess';
 
 export const Experience = () => {
   const [start, setStart] = useState(false);
-  const capsule = useRef();
+  const cube = useRef();
+  const isOnFloor = useRef(true);
+
+  // Acceso a la cámara y escena desde useThree
+  const { camera } = useThree();
 
   const jump = () => {
     if (isOnFloor.current) {
-      capsule.current.applyImpulse({ x: 0, y: 5, z: 0 });
+      cube.current.applyImpulse({ x: 0, y: 5, z: 0 });
       isOnFloor.current = false;
     }
   };
@@ -29,39 +33,54 @@ export const Experience = () => {
       return;
     }
     if (rightPressed) {
-      capsule.current.applyImpulse({ x: 0.1, y: 0, z: 0 });
+      cube.current.applyImpulse({ x: 0.1, y: 0, z: 0 });
     }
     if (leftPressed) {
-      capsule.current.applyImpulse({ x: -0.1, y: 0, z: 0 });
+      cube.current.applyImpulse({ x: -0.1, y: 0, z: 0 });
     }
 
     if (forwardPressed) {
-      capsule.current.applyImpulse({ x: 0, y: 0, z: -0.1 });
+      cube.current.applyImpulse({ x: 0, y: 0, z: -0.1 });
     }
     if (backPressed) {
-      capsule.current.applyImpulse({ x: 0, y: 0, z: 0.1 });
+      cube.current.applyImpulse({ x: 0, y: 0, z: 0.1 });
     }
   };
 
-  useFrame((_state) => {
+  // Actualizar la posición de la cámara en cada frame
+  useFrame(() => {
+    if (cube.current) {
+      // La cámara sigue al cubo
+      camera.position.lerp(
+        {
+          x: cube.current.translation().x + 10, // Cámara ligeramente detrás en el eje X
+          y: cube.current.translation().y + 10, // Cámara por encima del cubo
+          z: cube.current.translation().z + 10, // Cámara detrás en el eje Z
+        },
+        0.1 // Suavizar el movimiento
+      );
+
+      // Hacer que la cámara apunte al cubo
+      camera.lookAt(
+        cube.current.translation().x,
+        cube.current.translation().y,
+        cube.current.translation().z
+      );
+    }
+
     if (jumpPressed) jump();
-
     handleMovement();
-
-    if (!start) return;
-  })
-
-  const isOnFloor = useRef(true);
+  });
 
   return (
     <>
       <ambientLight intensity={0.5} />
       <directionalLight position={[-10, 10, 0]} intensity={0.4} />
-      <OrbitControls />
 
+      {/* Cubo (Box) que la cámara sigue */}
       <RigidBody
         position={[-2.5, 1, 0]}
-        ref={capsule}
+        ref={cube}
         onCollisionEnter={({ other }) => {
           if (other.collider?.name === "floor") {
             isOnFloor.current = true;
@@ -78,13 +97,15 @@ export const Experience = () => {
         </Box>
       </RigidBody>
 
+      {/* Tablero de ajedrez */}
       <Chess />
 
+      {/* Plano base */}
       <RigidBody type="fixed" name="floor">
         <Plane rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} args={[1000, 1000]}>
           <meshStandardMaterial color={"springgreen"} />
         </Plane>
       </RigidBody>
     </>
-  )
-}
+  );
+};
