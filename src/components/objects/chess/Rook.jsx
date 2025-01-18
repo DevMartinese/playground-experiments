@@ -7,10 +7,11 @@ Title: Low Poly Rook
 */
 
 import React from 'react';
+import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-export function Rook(props) {
+export function Rook({ isBlack = false, ...props }) {
   const { nodes, materials } = useGLTF('/assets/chess/rook/scene.gltf');
 
   // Configuración de físicas para la torre
@@ -29,7 +30,11 @@ export function Rook(props) {
             castShadow
             receiveShadow
             geometry={nodes.Rook_0.geometry}
-            material={materials.Root}
+            material={
+              isBlack
+                ? new THREE.MeshStandardMaterial({ color: 'black' }) // Material negro si isBlack es true
+                : materials.Root // Material predeterminado
+            }
             position={[0, 0, 3.848]}
             scale={0.746}
           />

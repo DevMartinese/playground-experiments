@@ -7,10 +7,11 @@ Title: Low Poly Bishop
 */
 
 import React from 'react';
+import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-export function Bishop(props) {
+export function Bishop({isBlack = false, ...props}) {
   const { nodes, materials } = useGLTF('/assets/chess/bishop/scene.gltf'); // Cambié la ruta al modelo del alfil
 
   // Configuración de físicas para el alfil
@@ -29,7 +30,11 @@ export function Bishop(props) {
             castShadow
             receiveShadow
             geometry={nodes.LP_Bishop_0.geometry}
-            material={materials.Root}
+            material={
+              isBlack
+                ? new THREE.MeshStandardMaterial({ color: 'black' }) // Material negro si isBlack es true
+                : materials.Root // Material predeterminado
+            }
             position={[0.112, 0, 6.755]}
           />
         </group>

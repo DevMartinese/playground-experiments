@@ -7,10 +7,11 @@ Title: Knight - Low Poly
 */
 
 import React from 'react';
+import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-export function Knight(props) {
+export function Knight({isBlack = false, ...props}) {
   const { nodes, materials } = useGLTF('/assets/chess/knight/scene.gltf');
 
   // Configuración de físicas para el caballo
@@ -29,7 +30,11 @@ export function Knight(props) {
             castShadow
             receiveShadow
             geometry={nodes.Pawn_0.geometry} // Ajusta si el nodo del modelo tiene nombre específico
-            material={materials.Root}
+            material={
+              isBlack
+                ? new THREE.MeshStandardMaterial({ color: 'black' }) // Material negro si isBlack es true
+                : materials.Root // Material predeterminado
+            }
             scale={0.555} // Escala definida por el modelo
           />
         </group>

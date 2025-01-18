@@ -7,10 +7,11 @@ Title: Low Poly Pawn
 */
 
 import React from 'react';
+import * as THREE from 'three'; // Importar THREE
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-export function Pawn(props) {
+export function Pawn({ isBlack = false, ...props }) { // Agregar prop isBlack
   const { nodes, materials } = useGLTF('/assets/chess/pawn/scene.gltf');
 
   // Configuración de físicas para el peón
@@ -22,14 +23,18 @@ export function Pawn(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} {...props}> {/* Ajusta la posición */}
+    <RigidBody {...physicsProps} {...props}>
       <group dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.Pawn_0.geometry}
-            material={materials.Root}
+            material={
+              isBlack
+                ? new THREE.MeshStandardMaterial({ color: 'black' }) // Material negro si isBlack es true
+                : materials.Root // Material predeterminado
+            }
             position={[0, 0, 3.848]}
             scale={0.746}
           />

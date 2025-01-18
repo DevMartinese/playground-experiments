@@ -7,10 +7,11 @@ Title: Queen - Low Poly
 */
 
 import React from 'react';
+import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-export function Queen(props) {
+export function Queen({isBlack = false, ...props}) {
   const { nodes, materials } = useGLTF('/assets/chess/queen/scene.gltf');
 
   // Configuración de físicas para la reina
@@ -29,7 +30,11 @@ export function Queen(props) {
             castShadow
             receiveShadow
             geometry={nodes.LP_Queen_0.geometry}
-            material={materials.Root}
+            material={
+              isBlack
+                ? new THREE.MeshStandardMaterial({ color: 'black' }) // Material negro si isBlack es true
+                : materials.Root // Material predeterminado
+            }
             position={[0, 0, 6.61]}
           />
         </group>
