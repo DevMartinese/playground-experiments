@@ -22,7 +22,7 @@ export function Queen(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} position={[1, 0, 0]} {...props}>
+    <RigidBody {...physicsProps} {...props}>
       <group dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh

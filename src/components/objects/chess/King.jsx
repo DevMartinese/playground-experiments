@@ -22,8 +22,8 @@ export function King(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} position={[0, 0, 0]}>
-      <group {...props} dispose={null}>
+    <RigidBody {...physicsProps} {...props}>
+      <group dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
             castShadow

@@ -22,7 +22,7 @@ export function Pawn(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} position={[5, 0, 0]} {...props}> {/* Ajusta la posición */}
+    <RigidBody {...physicsProps} {...props}> {/* Ajusta la posición */}
       <group dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh

@@ -22,7 +22,7 @@ export function Knight(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} position={[3, 0, 0]} {...props}> {/* Ajusta la posición */}
+    <RigidBody {...physicsProps} {...props}> {/* Ajusta la posición */}
       <group dispose={null}>
         <group position={[-0.001, 0, -0.001]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]}>
           <mesh

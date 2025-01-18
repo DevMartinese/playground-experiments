@@ -22,7 +22,7 @@ export function Bishop(props) {
   };
 
   return (
-    <RigidBody {...physicsProps} position={[2, 0, 0]} {...props}> {/* Ajusta la posición al lado de las otras piezas */}
+    <RigidBody {...physicsProps} {...props}> {/* Ajusta la posición al lado de las otras piezas */}
       <group dispose={null}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
