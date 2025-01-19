@@ -45,7 +45,7 @@ export function GoBoard() {
       <RigidBody type="fixed" colliders="cuboid">
         <mesh position={[20, 0, 20]} rotation={[-Math.PI / 2, 0, 0]}>
           <boxGeometry args={[boardSize * squareSize, boardSize * squareSize, 0.5]} />
-          <meshStandardMaterial color="saddlebrown" roughness={0.8} />
+          <meshStandardMaterial color="#DEB887" roughness={0.8} />
         </mesh>
       </RigidBody>
 
