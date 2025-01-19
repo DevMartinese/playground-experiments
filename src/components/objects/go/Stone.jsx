@@ -2,9 +2,6 @@ import React from 'react';
 import { RigidBody } from '@react-three/rapier';
 
 export function Stone({isBlack = false, ...props}) {
-  // Posición y color predeterminados
-  const position = [20, 0.5, 20];  // Ubicación en el tablero
-  const color = 'black';           // Color de la piedra de Go (puede ser 'white')
 
   return (
     <RigidBody
