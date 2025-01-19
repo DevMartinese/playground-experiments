@@ -81,7 +81,7 @@ export const Experience = () => {
 
       {/* Cubo (Box) que la cámara sigue */}
       <RigidBody
-        position={[-2.5, 1, 0]}
+        position={[-15, 1, 0]}
         ref={cube}
         onCollisionEnter={({ other }) => {
           if (other.collider?.name === "floor") {
