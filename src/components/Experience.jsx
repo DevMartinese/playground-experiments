@@ -4,6 +4,7 @@ import { RigidBody } from '@react-three/rapier';
 import { Controls } from '../App';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Chess } from './objects/chess/Chess';
+import { GoBoard } from './objects/go/GoBoard';
 
 export const Experience = () => {
   const [start, setStart] = useState(false);
@@ -100,6 +101,7 @@ export const Experience = () => {
 
       {/* Tablero de ajedrez */}
       <Chess />
+      <GoBoard />
 
       {/* Plano base */}
       <RigidBody type="fixed" name="floor">
