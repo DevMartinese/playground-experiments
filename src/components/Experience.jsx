@@ -81,6 +81,7 @@ export const Experience = () => {
 
       {/* Cubo (Box) que la cámara sigue */}
       <RigidBody
+        name='player'
         position={[-15, 1, 0]}
         ref={cube}
         onCollisionEnter={({ other }) => {

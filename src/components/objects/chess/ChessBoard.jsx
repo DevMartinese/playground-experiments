@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RigidBody } from '@react-three/rapier';
 import { motion } from 'motion/react';
+import { Html } from '@react-three/drei';
 
 export function ChessBoard() {
   const boardSize = 8; // Tamaño del tablero (8x8)
@@ -62,6 +63,8 @@ export function ChessBoard() {
 
       {/* Texto con efecto fade usando motion fuera del Canvas */}
       {showText && (
+        <Html>
+
         <motion.div
           id="text"
           style={{
@@ -69,7 +72,7 @@ export function ChessBoard() {
             top: '20px',
             right: '20px',  // Ubicado en la esquina superior derecha
             opacity: 0, // Comienza invisible
-            color: 'white',
+            color: 'red',
             fontSize: '20px',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             padding: '10px 20px',
@@ -79,6 +82,7 @@ export function ChessBoard() {
         >
           Estás en el tablero de ajedrez
         </motion.div>
+        </Html>
       )}
     </>
   );
