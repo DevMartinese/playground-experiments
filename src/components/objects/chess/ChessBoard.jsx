@@ -33,6 +33,8 @@ export function ChessBoard() {
     }
   }
 
+  console.log("SHOWTEXT =>", showText)
+
   return (
     <>
       <RigidBody
@@ -63,29 +65,64 @@ export function ChessBoard() {
       {/* Texto con efecto fade usando motion dentro de Html */}
       <Html>
         {showText && (
-          <motion.div
-            id="text"
-            initial={{ opacity: 0 }}  // Inicialmente invisible
-            animate={{ opacity: 1 }}  // Aparecerá cuando showText sea true
-            exit={{ opacity: 0 }}     // Desaparecerá suavemente
-            transition={{ duration: 0.8 }}  // Duración del efecto fade-in
-            style={{
-              textAlign: 'center',
-              position: 'fixed',
-              width: '400px',
-              bottom: '350px',
-              left: '300px', // Ubicado en la esquina superior derecha
-              color: 'white',
-              fontSize: '20px',
-              fontFamily: 'Helvetica, Arial, sans-serif',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              padding: '10px 20px',
-              borderRadius: '8px',
-              zIndex: 10,
-            }}
-          >
-            THIS IS A CHESSBOARD
-          </motion.div>
+          <>
+            <motion.div
+              id="text"
+              initial={{ opacity: 0 }}  // Inicialmente invisible
+              animate={{ opacity: 1 }}  // Aparecerá cuando showText sea true
+              exit={{ opacity: 0 }}     // Desaparecerá suavemente
+              transition={{ duration: 0.8 }}  // Duración del efecto fade-in
+              style={{
+                textAlign: 'center',
+                position: 'fixed',
+                width: '400px',
+                bottom: '350px',
+                left: '300px', // Ubicado en la esquina superior derecha
+                color: 'white',
+                fontSize: '20px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                zIndex: 10,
+              }}
+            >
+              CHESS
+            </motion.div>
+
+            <motion.div
+              id="text"
+              initial={{ opacity: 0 }}  // Inicialmente invisible
+              animate={{ opacity: 1 }}  // Aparecerá cuando showText sea true
+              exit={{ opacity: 0 }}     // Desaparecerá suavemente
+              transition={{ duration: 0.8, delay: 1 }}  // Duración del efecto fade-in
+              style={{
+                textAlign: 'center',
+                position: 'fixed',
+                width: '400px',
+                bottom: '-30px',
+                left: '300px', // Ubicado en la esquina superior derecha
+                color: 'white',
+                fontSize: '20px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                zIndex: 10,
+              }}>
+              <p>
+                <strong>Chess</strong> is an ancient game that originated in India around the 6th century AD under the name <em>'Chaturanga'</em>.
+              </p>
+              <p>
+                It spread to Persia, where it evolved and became known as <em>'Shatranj'</em>. During the Middle Ages, it gained popularity in Europe,
+                adopting modern rules in the 15th century.
+              </p>
+              <p>
+                Today, chess is a global symbol of <strong>strategy, intelligence, and competition</strong>. It is played by millions of people around the world,
+                from casual enthusiasts to professional grandmasters.
+              </p>
+            </motion.div>
+          </>
         )}
       </Html>
     </>
