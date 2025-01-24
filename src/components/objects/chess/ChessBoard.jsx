@@ -61,15 +61,18 @@ export function ChessBoard() {
       {squares}
 
       {/* Texto con efecto fade usando motion dentro de Html */}
-      <Html position={[0, 0, 0]}>
+      <Html>
         {showText && (
           <motion.div
             id="text"
+            initial={{ opacity: 0 }}  // Inicialmente invisible
+            animate={{ opacity: 1 }}  // Aparecerá cuando showText sea true
+            exit={{ opacity: 0 }}     // Desaparecerá suavemente
+            transition={{ duration: 0.8 }}  // Duración del efecto fade-in
             style={{
               position: 'absolute',
               top: '20px',
               right: '20px', // Ubicado en la esquina superior derecha
-              opacity: 5, // Comienza invisible
               color: 'red',
               fontSize: '20px',
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
