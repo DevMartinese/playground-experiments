@@ -70,19 +70,21 @@ export function ChessBoard() {
             exit={{ opacity: 0 }}     // Desaparecerá suavemente
             transition={{ duration: 0.8 }}  // Duración del efecto fade-in
             style={{
+              textAlign: 'center',
               position: 'fixed',
               width: '400px',
               bottom: '350px',
               left: '300px', // Ubicado en la esquina superior derecha
-              color: 'red',
+              color: 'white',
               fontSize: '20px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
               padding: '10px 20px',
               borderRadius: '8px',
               zIndex: 10,
             }}
           >
-            Estás en el tablero de ajedrez
+            THIS IS A CHESSBOARD
           </motion.div>
         )}
       </Html>
