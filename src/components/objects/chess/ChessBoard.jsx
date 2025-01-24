@@ -16,13 +16,13 @@ export function ChessBoard() {
       squares.push(
         <RigidBody
           key={`${row}-${col}`}
-          type="fixed" // Casillas no se mueven
+          type="fixed"
           position={[
             col * squareSize - (boardSize / 2) + squareSize / 2,
-            0.04, // Ligeramente por encima de la base
+            0.04,
             row * squareSize - (boardSize / 2) + squareSize / 2,
           ]}
-          colliders="cuboid" // Collider en forma de cubo
+          colliders="cuboid"
         >
           <mesh>
             <boxGeometry args={[squareSize, 0.1, squareSize]} />
@@ -36,8 +36,8 @@ export function ChessBoard() {
   return (
     <>
       <RigidBody
-        type="fixed" // La base no se mueve
-        colliders="cuboid" // Collider rectangular para la base
+        type="fixed"
+        colliders="cuboid"
         onCollisionEnter={({ other }) => {
           if (other.rigidBodyObject?.name === "player") {
             setShowText(true);
@@ -52,38 +52,36 @@ export function ChessBoard() {
           }
         }}
       >
-        <mesh position={[0, 0, 0]}> {/* Elevada para estar encima del Plane */}
-          <boxGeometry args={[boardSize + 1, 0.1, boardSize + 1]} /> {/* Base más grande que el tablero */}
+        <mesh position={[0, 0, 0]}>
+          <boxGeometry args={[boardSize + 1, 0.1, boardSize + 1]} />
           <meshStandardMaterial color="saddlebrown" roughness={0.8} />
         </mesh>
       </RigidBody>
 
-      {/* Casillas del tablero */}
       {squares}
 
-      {/* Texto con efecto fade usando motion fuera del Canvas */}
-      {showText && (
-        <Html>
-
-        <motion.div
-          id="text"
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',  // Ubicado en la esquina superior derecha
-            opacity: 0, // Comienza invisible
-            color: 'red',
-            fontSize: '20px',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            zIndex: 10,
-          }}
-        >
-          Estás en el tablero de ajedrez
-        </motion.div>
-        </Html>
-      )}
+      {/* Texto con efecto fade usando motion dentro de Html */}
+      <Html position={[0, 0, 0]}>
+        {showText && (
+          <motion.div
+            id="text"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px', // Ubicado en la esquina superior derecha
+              opacity: 5, // Comienza invisible
+              color: 'red',
+              fontSize: '20px',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              padding: '10px 20px',
+              borderRadius: '8px',
+              zIndex: 10,
+            }}
+          >
+            Estás en el tablero de ajedrez
+          </motion.div>
+        )}
+      </Html>
     </>
   );
 }
