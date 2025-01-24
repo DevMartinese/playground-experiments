@@ -70,9 +70,10 @@ export function ChessBoard() {
             exit={{ opacity: 0 }}     // Desaparecerá suavemente
             transition={{ duration: 0.8 }}  // Duración del efecto fade-in
             style={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px', // Ubicado en la esquina superior derecha
+              position: 'fixed',
+              width: '400px',
+              bottom: '350px',
+              left: '300px', // Ubicado en la esquina superior derecha
               color: 'red',
               fontSize: '20px',
               backgroundColor: 'rgba(0, 0, 0, 0.7)',
